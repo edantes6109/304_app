@@ -1,0 +1,12 @@
+# Security & Privacy: Keep all source documents, databases, and scripts local only
+304/
+README.md
+
+# OS & Temp files
+.DS_Store
+Thumbs.db
+__pycache__/
+*.xlsx
+*.pdf
+*.json
+*.py
