@@ -210,7 +210,6 @@ def build_ue(code):
         "{{OPEN_DATA}}": js_json(open_q),
         "{{AI_BANK_DATA}}": js_json(ai_bank),
         "{{ALLOWED_HASHES}}": js_json(hashes),
-        "{{LOG_WEBHOOK_URL}}": js_json(cfg.get("webhook_url", "")),
         "{{DARK_CSS}}": build_dark_css(),
         "{{UE_CODE}}": esc(code),
         "{{UE_TITLE}}": esc(cfg.get("title", f"UE {code}")),

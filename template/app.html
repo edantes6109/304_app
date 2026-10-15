@@ -1428,7 +1428,6 @@
     const OPEN_DATASET = {{OPEN_DATA}};
     const BUILTIN_AI_BANK = {{AI_BANK_DATA}};
     const ALLOWED_CREDENTIAL_HASHES = {{ALLOWED_HASHES}};
-    const LOG_WEBHOOK_URL = {{LOG_WEBHOOK_URL}};
 
     // Strict Type Normalization
     QCM_DATASET.forEach(q => { q.type = 'qcm'; });
@@ -1805,48 +1804,6 @@
       return ALLOWED_CREDENTIAL_HASHES.includes(hash);
     }
 
-    function recordUserEvent(email, eventType = 'login', details = '') {
-      if (!email || !LOG_WEBHOOK_URL) return;
-      try {
-        const normalizedEmail = normalizeAuthEmail(email);
-        if (!normalizedEmail) return;
-
-        let localCount = 1;
-        if (eventType === 'login') {
-          // Prevent multiple pings on quick F5 page reloads in the same session
-          const sessionKey = 'session_logged_{{UE_CODE}}_' + normalizedEmail;
-          if (sessionStorage.getItem(sessionKey)) return;
-          sessionStorage.setItem(sessionKey, Date.now().toString());
-
-          const countKey = 'user_login_count_{{UE_CODE}}_' + normalizedEmail;
-          localCount = (parseInt(localStorage.getItem(countKey), 10) || 0) + 1;
-          localStorage.setItem(countKey, localCount.toString());
-        }
-
-        const params = new URLSearchParams({
-          email: normalizedEmail,
-          ue: '{{UE_CODE}}',
-          event: eventType,
-          count: localCount.toString(),
-          details: details || '',
-          t: Date.now().toString()
-        });
-
-        const targetUrl = LOG_WEBHOOK_URL + (LOG_WEBHOOK_URL.includes('?') ? '&' : '?') + params.toString();
-
-        // Send via Image beacon (never blocked by CORS, follows Google 302 redirects seamlessly)
-        const beacon = new Image();
-        beacon.src = targetUrl;
-
-        // And background fetch as a secondary channel
-        if (typeof fetch === 'function') {
-          fetch(targetUrl, { mode: 'no-cors' }).catch(() => {});
-        }
-      } catch (err) {
-        // Telemetry is non-blocking
-      }
-    }
-
     function unlockAppInterface(email) {
       currentUserEmail = email;
       const modal = document.getElementById('auth-gate-modal');
@@ -1861,9 +1818,6 @@
         badge.classList.remove('hidden');
         display.textContent = email;
       }
-
-      // Record login event
-      recordUserEvent(email, 'login');
 
       if (!isAppInitialized) {
         isAppInitialized = true;
@@ -3836,10 +3790,6 @@
           isMissed: missedIndices.includes(i)
         }))
       };
-
-      if (currentUserEmail) {
-        recordUserEvent(currentUserEmail, 'quiz_completed', `${totalEarnedPoints}/${totalMaxPoints} (${pct}%)`);
-      }
 
       renderResults();
       navigateTab('results');
