@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>{{UE_CODE}}_app • {{UE_TITLE}} | Annales d'Examens & Générateur IA</title>
+  <title>UT2J • UE {{UE_CODE}} • {{UE_TITLE}} | Annales d'Examens & Générateur IA</title>
   <!-- Tailwind CSS CDN (replaced at build time by precompiled inline CSS when the Tailwind CLI is available) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -157,7 +157,7 @@
       </div>
       <div>
         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
-          Accès Privé • {{UE_CODE}}_app
+          Accès Privé • UT2J QCM
         </span>
         <h2 class="text-xl font-extrabold text-slate-900 mt-2">
           Espace de Révision Réservé
@@ -226,7 +226,7 @@
       <div>
         <div class="flex items-center gap-2 flex-wrap">
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-600 text-white shadow-xs">
-            {{UE_CODE}}_app • UE {{UE_CODE}} L2
+            UT2J • UE {{UE_CODE}} L2
           </span>
           <span class="text-xs text-slate-500 font-mono font-medium" id="header-total-badge">
             130 questions officielles (120 QCM • 10 Questions ouvertes)
@@ -2848,19 +2848,16 @@
 
         card.innerHTML = `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <label class="flex items-start gap-3 cursor-pointer flex-1">
+            <label class="flex items-center gap-3 cursor-pointer flex-1" title="${escapeHtml(doc.description || '')}">
               <input type="checkbox" value="${escapeHtml(doc.name)}" ${isChecked ? 'checked' : ''} 
                 onchange="toggleSource(this.value, this.checked)" 
-                class="mt-1 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-4 w-4">
-              <div>
-                <div class="flex items-center gap-2 flex-wrap">
-                  <span class="text-sm font-bold text-slate-900">${escapeHtml(doc.name)}</span>
-                  <span class="px-2 py-0.5 rounded-md text-[11px] font-mono font-semibold bg-slate-100 text-slate-700 border border-slate-200">
-                    📄 ${escapeHtml(doc.filename)}
-                  </span>
-                  ${doc.isAi ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-purple-100 text-purple-700 border border-purple-200">✨ IA</span>' : ''}
-                </div>
-                <p class="text-xs text-slate-500 mt-0.5">${escapeHtml(doc.description)}</p>
+                class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-4 w-4">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-sm font-bold text-slate-900">${escapeHtml(doc.name)}</span>
+                <span class="px-2 py-0.5 rounded-md text-[11px] font-mono font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                  📄 ${escapeHtml(doc.filename)}
+                </span>
+                ${doc.isAi ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-purple-100 text-purple-700 border border-purple-200">✨ IA</span>' : ''}
               </div>
             </label>
 

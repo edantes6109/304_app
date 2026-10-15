@@ -68,8 +68,8 @@ Le script précompile Tailwind (CSS inliné, aucun CDN requis ; repli sur le CDN
 > ⚠️ **Note sécurité** : l'accès par email + PIN est une barrière légère côté navigateur. Les questions sont embarquées dans la page et restent lisibles via le code source.
 
 ## 🌐 Déploiement GitHub Pages
-1. Dépôt GitHub : `https://github.com/edantes6109/304_app`
+1. Dépôt GitHub : `https://github.com/edantes6109/ut2j_app`
 2. Dans **Settings** > **Pages** > **Build and deployment** > **Branch**, sélectionnez `main` et le dossier `/ (root)`.
 3. Après build, committez `index.html` (accueil) et les `<UE>/index.html` générés. L'application est en ligne à :
-   - Accueil : `https://edantes6109.github.io/304_app/`
-   - UE 304 : `https://edantes6109.github.io/304_app/304/`
+   - Accueil : `https://edantes6109.github.io/ut2j_app/`
+   - UE 304 : `https://edantes6109.github.io/ut2j_app/304/`
