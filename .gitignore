@@ -1,12 +1,17 @@
-# Security & Privacy: Keep all source documents, databases, and scripts local only
-304/
-README.md
+# Security & Privacy: keep personal data, course documents and raw databases local only
+# (applies to every UE folder: 304/, 301/, ...)
+*/allowed_emails.json
+*/docs/
+*/data/
+
+# Obsolete UI mockups
+archive/
+
+# Node tooling / build temp files
+node_modules/
+template/.tw_source.html
 
 # OS & Temp files
 .DS_Store
 Thumbs.db
 __pycache__/
-*.xlsx
-*.pdf
-*.json
-*.py
